@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "104708677367",
+    "firebase_url": "https://ungstargram.firebaseio.com",
+    "project_id": "ungstargram",
+    "storage_bucket": "ungstargram.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104708677367:android:3fda9682d51bb679703df2",
+        "android_client_info": {
+          "package_name": "com.hyeung.ungstargram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104708677367-62f2d7ohbm4dbhnkpa8dk79vrsb1gu26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hyeung.ungstargram",
+            "certificate_hash": "1c25801d63ed9ac549cdbdfc238ca2dc46bd28ab"
+          }
+        },
+        {
+          "client_id": "104708677367-mk0fku3rk260qpucfhf0ndfkvlc7kich.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDypdQ_Bd1Pvv0sP6ooyZeM5Kg15oj0_yY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104708677367-mk0fku3rk260qpucfhf0ndfkvlc7kich.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
