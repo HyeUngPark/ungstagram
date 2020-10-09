@@ -5,8 +5,10 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hyeung.ungstargram.navigation.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,4 +54,5 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         bottom_navigation.selectedItemId = R.id.action_home
     }
+    inner class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

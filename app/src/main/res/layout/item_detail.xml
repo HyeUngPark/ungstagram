@@ -32,15 +32,17 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
         <ImageView
+            android:id="@+id/detailviewitem_favorite_imageview"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:id="@+id/detailviewitem_profile_favorite_imageview"
-            android:src="@drawable/ic_favorite_border"
-            android:layout_width="35dp"
-            android:layout_height="35dp"/>
+            android:src="@drawable/ic_favorite_border" />
+
         <ImageView
-            android:id="@+id/detailviewitem_profile_content_imageview"
+            android:id="@+id/detailviewitem_content_imageview"
             android:src="@drawable/ic_chat_black"
             android:layout_width="35dp"
             android:layout_height="35dp"/>
