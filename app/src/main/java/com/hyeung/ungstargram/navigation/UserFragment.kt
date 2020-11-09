@@ -211,6 +211,7 @@ class  UserFragment : Fragment(){
                             contentDTOs.add(snapshot.toObject(ContentDTO::class.java)!!)
                         }
                         fragmentView?.account_tv_post_count?.text = contentDTOs.size.toString()
+                        notifyDataSetChanged()
                     }
             }
 
