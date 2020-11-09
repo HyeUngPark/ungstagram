@@ -1,5 +1,6 @@
 package com.hyeung.ungstargram.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -92,6 +93,12 @@ class  DetailViewFragment : Fragment(){
                 bundle.putString("userId",contentDTOs[position].userId)
                 fragment.arguments = bundle
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_content,fragment)?.commit()
+            }
+
+            viewholder.detailviewitem_content_imageview.setOnClickListener { v->
+                var intent = Intent(v.context, CommentActivity::class.java)
+                intent.putExtra("contentUid",contentUidList[position])
+                startActivity(intent)
             }
         }
         //좋아요 이벤트 기능
