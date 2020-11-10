@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hyeung.ungstargram.R
@@ -76,7 +77,15 @@ class  DetailViewFragment : Fragment(){
             // like count
             viewholder.detailviewitem_favoritecounter_textview.text = "Likes "+contentDTOs!![position].favoriteCount
             // profile Image
-            Glide.with(holder.itemView.context).load(contentDTOs!![position].imageUrl).into(viewholder.detailviewitem_profile_image)
+            firestore?.collection("profileImages")?.document(contentDTOs[position].uid!!)
+                ?.get()?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val url = task?.result!!["image"]
+                        Glide.with(holder.itemView.context)
+                            .load(url)
+                            .apply(RequestOptions().circleCrop()).into(viewholder.detailviewitem_profile_image)
+                    }
+                }
 
             viewholder.detailviewitem_favorite_imageview.setOnClickListener{
                 favoriteEvent(position)
