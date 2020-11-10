@@ -20,6 +20,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.hyeung.ungstargram.LoginActivity
 import com.hyeung.ungstargram.MainActivity
 import com.hyeung.ungstargram.R
+import com.hyeung.ungstargram.navigation.model.AlarmDTO
 import com.hyeung.ungstargram.navigation.model.ContentDTO
 import com.hyeung.ungstargram.navigation.model.FollowDTO
 import kotlinx.android.synthetic.main.activity_main.*
@@ -167,10 +168,11 @@ class  UserFragment : Fragment(){
         var tsDocFollower = firestore?.collection("users")?.document(uid!!)
         firestore?.runTransaction { transaction ->
             var followDTO = transaction.get(tsDocFollower!!).toObject(FollowDTO::class.java)
-            if (followDTO == null) {
+            if (followDTO == null) { // 최초 팔로우
                 followDTO = FollowDTO()
                 followDTO!!.followerCount = 1
                 followDTO!!.followers[currentUserUid!!] = true
+                followerAlarm(uid!!)
                 transaction.set(tsDocFollower, followDTO!!)
                 return@runTransaction
             }
@@ -178,8 +180,11 @@ class  UserFragment : Fragment(){
                 followDTO!!.followerCount = followDTO!!.followerCount - 1
                 followDTO!!.followers.remove(currentUserUid!!)
             } else {
+                // 팔로우
                 followDTO!!.followerCount = followDTO!!.followerCount + 1
                 followDTO!!.followers[currentUserUid!!] = true
+                followerAlarm(uid!!)
+
             }
                 transaction.set(tsDocFollower, followDTO!!)
                 return@runTransaction
@@ -195,6 +200,16 @@ class  UserFragment : Fragment(){
                             .into(fragmentView?.account_iv_profile!!)
                     }
                 }
+        }
+
+        fun followerAlarm(destinationUid : String){
+            var alarmDTO = AlarmDTO()
+            alarmDTO.destinationUid = destinationUid
+            alarmDTO.userId = auth?.currentUser?.email
+            alarmDTO.uid = auth?.currentUser?.uid
+            alarmDTO.kind = 2
+            alarmDTO.timestamp = System.currentTimeMillis()
+            FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
         }
 
         inner class UserFragmentRecyclerViewAdapter :
