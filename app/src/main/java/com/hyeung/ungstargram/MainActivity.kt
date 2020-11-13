@@ -14,12 +14,15 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.hyeung.ungstargram.navigation.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItemSelectedListener{
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         setToolbarDefault()
         when(p0.itemId){
@@ -57,10 +60,22 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return false
     }
 
+
     fun setToolbarDefault(){
         toolbar_username.visibility = View.GONE
         toolbar_btn_back.visibility = View.GONE
         toolbar_title_image.visibility = View.VISIBLE
+    }
+
+    // 토큰 생성
+    fun registerPushToken(){
+        FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener{ task ->
+            var pushToken = FirebaseInstanceId.getInstance().token
+            var uid = FirebaseAuth.getInstance().currentUser?.uid
+            var map = mutableMapOf<String,Any>()
+            map["pushtoken"] = pushToken!!
+            FirebaseFirestore.getInstance().collection("pushtokens").document(uid!!).set(map)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +85,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1)
 
         bottom_navigation.selectedItemId = R.id.action_home
+        registerPushToken()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
