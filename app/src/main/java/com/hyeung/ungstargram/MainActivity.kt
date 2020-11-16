@@ -20,6 +20,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.hyeung.ungstargram.navigation.*
+import com.hyeung.ungstargram.navigation.util.FcmPush
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItemSelectedListener{
