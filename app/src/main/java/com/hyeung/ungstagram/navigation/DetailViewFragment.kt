@@ -1,4 +1,4 @@
-package com.hyeung.ungstargram.navigation
+package com.hyeung.ungstagram.navigation
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,10 +13,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.hyeung.ungstargram.R
-import com.hyeung.ungstargram.navigation.model.AlarmDTO
-import com.hyeung.ungstargram.navigation.model.ContentDTO
-import com.hyeung.ungstargram.navigation.util.FcmPush
+import com.hyeung.ungstagram.R
+import com.hyeung.ungstagram.navigation.model.AlarmDTO
+import com.hyeung.ungstagram.navigation.model.ContentDTO
+import com.hyeung.ungstagram.navigation.util.FcmPush
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 

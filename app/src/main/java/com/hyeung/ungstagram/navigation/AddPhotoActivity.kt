@@ -1,4 +1,4 @@
-package com.hyeung.ungstargram.navigation
+package com.hyeung.ungstagram.navigation
 
 import android.app.Activity
 import android.content.Intent
@@ -9,8 +9,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import com.hyeung.ungstargram.R
-import com.hyeung.ungstargram.navigation.model.ContentDTO
+import com.hyeung.ungstagram.R
+import com.hyeung.ungstagram.navigation.model.ContentDTO
 import kotlinx.android.synthetic.main.activity_add_photo.*
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,4 +1,4 @@
-package com.hyeung.ungstargram.navigation
+package com.hyeung.ungstagram.navigation
 
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -17,13 +17,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import com.hyeung.ungstargram.LoginActivity
-import com.hyeung.ungstargram.MainActivity
-import com.hyeung.ungstargram.R
-import com.hyeung.ungstargram.navigation.model.AlarmDTO
-import com.hyeung.ungstargram.navigation.model.ContentDTO
-import com.hyeung.ungstargram.navigation.model.FollowDTO
-import com.hyeung.ungstargram.navigation.util.FcmPush
+import com.hyeung.ungstagram.LoginActivity
+import com.hyeung.ungstagram.MainActivity
+import com.hyeung.ungstagram.R
+import com.hyeung.ungstagram.navigation.model.AlarmDTO
+import com.hyeung.ungstagram.navigation.model.ContentDTO
+import com.hyeung.ungstagram.navigation.model.FollowDTO
+import com.hyeung.ungstagram.navigation.util.FcmPush
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_user.view.*
 class  UserFragment : Fragment(){

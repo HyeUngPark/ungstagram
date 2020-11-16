@@ -1,8 +1,8 @@
-package com.hyeung.ungstargram.navigation.util
+package com.hyeung.ungstagram.navigation.util
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
-import com.hyeung.ungstargram.navigation.model.PushDTO
+import com.hyeung.ungstagram.navigation.model.PushDTO
 import okhttp3.*
 import java.io.IOException
 

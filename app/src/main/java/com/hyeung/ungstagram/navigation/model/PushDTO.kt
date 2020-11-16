@@ -1,6 +1,4 @@
-package com.hyeung.ungstargram.navigation.model
-
-import android.app.Notification
+package com.hyeung.ungstagram.navigation.model
 
 data class PushDTO (
     var to : String ? = null,

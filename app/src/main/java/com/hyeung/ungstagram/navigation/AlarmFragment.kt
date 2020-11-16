@@ -1,4 +1,4 @@
-package com.hyeung.ungstargram.navigation
+package com.hyeung.ungstagram.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.hyeung.ungstargram.R
-import com.hyeung.ungstargram.navigation.model.AlarmDTO
+import com.hyeung.ungstagram.R
+import com.hyeung.ungstagram.navigation.model.AlarmDTO
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 import kotlinx.android.synthetic.main.item_comment.view.*
 

@@ -1,4 +1,4 @@
-package com.hyeung.ungstargram
+package com.hyeung.ungstagram
 
 import android.content.Intent
 import android.content.pm.PackageManager

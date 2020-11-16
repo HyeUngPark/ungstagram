@@ -1,4 +1,4 @@
-package com.hyeung.ungstargram.navigation.model
+package com.hyeung.ungstagram.navigation.model
 
 data class AlarmDTO(
     var destinationUid : String ? = null,

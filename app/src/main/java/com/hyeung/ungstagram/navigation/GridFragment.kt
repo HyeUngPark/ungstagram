@@ -1,4 +1,4 @@
-package com.hyeung.ungstargram.navigation
+package com.hyeung.ungstagram.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import com.hyeung.ungstargram.R
-import com.hyeung.ungstargram.navigation.model.ContentDTO
+import com.hyeung.ungstagram.R
+import com.hyeung.ungstagram.navigation.model.ContentDTO
 import kotlinx.android.synthetic.main.fragment_grid.view.*
 
 class  GridFragment : Fragment(){
