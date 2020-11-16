@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.hyeung.ungstargram.R
 import com.hyeung.ungstargram.navigation.model.AlarmDTO
 import com.hyeung.ungstargram.navigation.model.ContentDTO
+import com.hyeung.ungstargram.navigation.util.FcmPush
 import kotlinx.android.synthetic.main.activity_comment.*
 import kotlinx.android.synthetic.main.item_comment.view.*
 
@@ -51,6 +52,9 @@ class CommentActivity : AppCompatActivity() {
         alarmDTO.timestamp = System.currentTimeMillis()
         alarmDTO.message = message
         FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
+
+        var message = FirebaseAuth.getInstance()?.currentUser?.email + getString(R.string.alarm_comment)
+        FcmPush.instance.sendMessage(destinationUid,"Ungstagram",message)
     }
 
     inner class CommentRecyclerviewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){

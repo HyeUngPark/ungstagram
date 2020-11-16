@@ -23,6 +23,7 @@ import com.hyeung.ungstargram.R
 import com.hyeung.ungstargram.navigation.model.AlarmDTO
 import com.hyeung.ungstargram.navigation.model.ContentDTO
 import com.hyeung.ungstargram.navigation.model.FollowDTO
+import com.hyeung.ungstargram.navigation.util.FcmPush
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_user.view.*
 class  UserFragment : Fragment(){
@@ -210,6 +211,9 @@ class  UserFragment : Fragment(){
             alarmDTO.kind = 2
             alarmDTO.timestamp = System.currentTimeMillis()
             FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
+
+            var message = FirebaseAuth.getInstance()?.currentUser?.email + getString(R.string.alarm_follow)
+            FcmPush.instance.sendMessage(destinationUid,"Ungstagram",message)
         }
 
         inner class UserFragmentRecyclerViewAdapter :
