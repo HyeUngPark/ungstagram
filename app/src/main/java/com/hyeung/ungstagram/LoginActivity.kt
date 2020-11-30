@@ -142,6 +142,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun signinAndSignup() {
+        var email = email_edittext.text.toString()
+        var pwd = password_edittext.text.toString()
+        if(email.isEmpty() || pwd.isEmpty()){
+            Toast.makeText(this, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show()
+            return;
+        }
         auth?.createUserWithEmailAndPassword(
             email_edittext.text.toString(),
             password_edittext.text.toString()
