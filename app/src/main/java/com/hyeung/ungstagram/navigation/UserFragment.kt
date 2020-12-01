@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import com.hyeung.ungstagram.LoginActivity
 import com.hyeung.ungstagram.MainActivity
 import com.hyeung.ungstagram.R
@@ -221,7 +222,7 @@ class  UserFragment : Fragment(){
             var contentDTOs: ArrayList<ContentDTO> = arrayListOf()
 
             init {
-                firestore?.collection("images")?.whereEqualTo("uid", uid)
+                firestore?.collection("images")?.whereEqualTo("uid", uid)?.orderBy("timestamp", Query.Direction.DESCENDING)
                     ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
 
                         if (querySnapshot == null) return@addSnapshotListener
