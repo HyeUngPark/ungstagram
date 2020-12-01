@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
         when(p0.itemId){
             R.id.action_home ->{
                 var detailViewFragment = DetailViewFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.main_content,detailViewFragment).commit()
-                    return true
+                supportFragmentManager.beginTransaction().replace(R.id.main_content,detailViewFragment).commit()
+                return true
             }
             R.id.action_search ->{
                 var gridFragment = GridFragment()
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
             }
             R.id.action_add_photo ->{
                 if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                startActivity(Intent(this, AddPhotoActivity::class.java))
+                    startActivity(Intent(this, AddPhotoActivity::class.java))
                 }
                 return true
             }
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
             var uid = FirebaseAuth.getInstance().currentUser?.uid
             var storageRef = FirebaseStorage.getInstance().reference.child("userProfileImages").child(uid!!)
             storageRef.putFile(imageUri!!).continueWithTask {task: Task<UploadTask.TaskSnapshot> ->
-                    return@continueWithTask storageRef.downloadUrl
+                return@continueWithTask storageRef.downloadUrl
             }.addOnSuccessListener {uri->
                 var map = HashMap<String,Any>()
                 map["image"] = uri.toString()
