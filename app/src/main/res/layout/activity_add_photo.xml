@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="invisible"
+    android:id="@+id/add_photo_layout"
     tools:context=".navigation.AddPhotoActivity">
-    <!--        android.support.v7.widget.Toolbar-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"

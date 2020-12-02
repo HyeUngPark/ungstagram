@@ -9,6 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -37,6 +39,7 @@ class AddPhotoActivity : AppCompatActivity() {
     var firestore : FirebaseFirestore? = null
     val REQUEST_IMAGE_CAPTURE = 1
     var currentPhotoPath : String ? =null
+    var test : View ? = null
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,13 +75,15 @@ class AddPhotoActivity : AppCompatActivity() {
 
         val camera_open = dialogView.findViewById<Button>(R.id.camera_open)
         val gallery_open = dialogView.findViewById<Button>(R.id.gallery_open)
-        gallery_open.setOnClickListener{
+        gallery_open.setOnClickListener{view->
             startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
             dialog.dismiss()
+            add_photo_layout.visibility = View.VISIBLE
         }
         camera_open.setOnClickListener{
             startCapture()
             dialog.dismiss()
+            add_photo_layout.visibility = View.VISIBLE
         }
     }
 
