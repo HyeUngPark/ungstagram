@@ -196,7 +196,8 @@ class AddPhotoActivity : AppCompatActivity() {
             contentDTO.explain = addphoto_edit_explain?.text.toString()
             // timestamp
             contentDTO.timestamp = System.currentTimeMillis()
-
+            // 삭제여부
+             contentDTO.delYn = false
              firestore?.collection("images")?.document()?.set(contentDTO)
             setResult(Activity.RESULT_OK)
 

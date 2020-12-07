@@ -222,7 +222,7 @@ class  UserFragment : Fragment(){
             var contentDTOs: ArrayList<ContentDTO> = arrayListOf()
 
             init {
-                firestore?.collection("images")?.whereEqualTo("uid", uid)?.orderBy("timestamp", Query.Direction.DESCENDING)
+                firestore?.collection("images")?.whereEqualTo("uid", uid)?.whereEqualTo("delYn", false)?.orderBy("timestamp", Query.Direction.DESCENDING)
                     ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
 
                         if (querySnapshot == null) return@addSnapshotListener
