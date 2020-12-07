@@ -1,15 +1,19 @@
 package com.hyeung.ungstagram.navigation
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.init
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,7 +44,7 @@ class  DetailViewFragment : Fragment(){
         var contentDTOs : ArrayList<ContentDTO> = arrayListOf()
         var contentUidList : ArrayList<String> = arrayListOf()
         init{
-            firestore?.collection("images")?.orderBy("timestamp", Query.Direction.DESCENDING)
+            firestore?.collection("images")?.whereEqualTo("delYn",false)?.orderBy("timestamp", Query.Direction.DESCENDING)
                 ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                     contentDTOs.clear()
                     contentUidList.clear()
@@ -52,8 +56,6 @@ class  DetailViewFragment : Fragment(){
                     }
                     notifyDataSetChanged()
                 }
-
-
 
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -89,7 +91,10 @@ class  DetailViewFragment : Fragment(){
                             .apply(RequestOptions().circleCrop()).into(viewholder.detailviewitem_profile_image)
                     }
                 }
-
+            // 삭제버튼
+            if(contentDTOs!![position].uid != uid){
+                viewholder.iv_delete.visibility = View.INVISIBLE
+            }
             viewholder.detailviewitem_favorite_imageview.setOnClickListener{
                 favoriteEvent(position)
             }
@@ -113,6 +118,20 @@ class  DetailViewFragment : Fragment(){
                 intent.putExtra("contentUid",contentUidList[position])
                 intent.putExtra("destinationUid",contentDTOs[position].uid)
                 startActivity(intent)
+            }
+
+            viewholder.iv_delete.setOnClickListener{v->
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("삭제확인")
+                    .setMessage("정말 삭제하시겠습니까?")
+                    .setPositiveButton("삭제"){dialog: DialogInterface?, which: Int ->
+//                        Toast.makeText(requireActivity(), "삭제", Toast.LENGTH_LONG).show()
+                        deleteContent(contentUidList[position])
+                    }
+                    .setNegativeButton("취소") {dialog: DialogInterface?, which: Int ->
+//                        Toast.makeText(requireActivity(), "취소", Toast.LENGTH_LONG).show()
+                    }
+                    .show()
             }
         }
         //좋아요 이벤트 기능
@@ -148,5 +167,26 @@ class  DetailViewFragment : Fragment(){
             var message = FirebaseAuth.getInstance()?.currentUser?.email + getString(R.string.alarm_favorite)
             FcmPush.instance.sendMessage(destinationUid,"Ungstagram",message)
         }
+        // 삭제버튼
+        fun deleteContent(delUid : String){
+            var tsDoc = firestore?.collection("images")?.document(delUid)
+            firestore?.runTransaction { transaction ->
+                val contentDTO = transaction.get(tsDoc!!).toObject(ContentDTO::class.java)
+                    contentDTO?.delYn = true
+                if (contentDTO != null) {
+                    transaction.set(tsDoc, contentDTO)
+//                    notifyDataSetChanged()
+                }
+            }?.addOnSuccessListener { result ->
+                Toast.makeText(requireActivity(), "삭제 성공", Toast.LENGTH_LONG).show()
+                Log.d("TAG", "Transaction success: "+result)
+            }?.addOnFailureListener { e ->
+                Toast.makeText(requireActivity(), "삭제 실패", Toast.LENGTH_LONG).show()
+                Log.w("TAG", "Transaction failure. "+ e)
+            }
+
+
+        }
+
     }
 }
