@@ -82,6 +82,7 @@ ungstagram/app/release/ungstagram.apk
 
 ## 사용한 모듈
 
+```
 "firebase-auth" : "18.0.0"
 "firebase-storage" : "18.0.0"
 "firebase-firestore" : "18.0.0"
